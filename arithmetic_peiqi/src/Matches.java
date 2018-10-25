@@ -44,17 +44,51 @@ public class Matches {
         *
         * */
         Scanner text=new Scanner(System.in);
-        String no=text.next();
-        /*Pattern q=Pattern.compile(".*(.)(\\1).*");*/
-        /*
+     /*   String no=text.next();
+        *//*Pattern q=Pattern.compile(".*(.)(\\1).*");*//*
+        *//*
         * 这个是用来判断有没有a字符的!!!!(".*(a).*")
         * 这个用来判断是否含有相同的aa！！！   (".*(a)(\\1).*")
-        * */
+        * *//*
         Pattern q=Pattern.compile(".*(a)(\\1).*");
-       /* Pattern q=Pattern.compile("1[35]\\d{9}");*/
+       *//* Pattern q=Pattern.compile("1[35]\\d{9}");*//*
         Matcher m1=q.matcher(no);
         boolean d=m1.matches();
         System.out.println(d);
+
+        Pattern i=Pattern.compile("[0-9]{3}");
+        String ni=text.next();
+        Matcher m2=i.matcher(ni);
+        boolean d1=m2.matches();
+        System.out.println(d1);*/
+
+
+
+        /*
+        * \b 字符边界匹配，字符串最后是以空格结尾nerver （可以匹配到）而verb就不可以！！
+        * \B 与上述正好相反。
+        * \w 匹配任何字类字符，包括下划线。与"[A-Za-z0-9_]"等效
+        * \W 与任何非单词字符匹配。与"[^A-Za-z0-9_]"等效。
+        * ^ 正则开始符号
+        * runoo+b，可以匹配 runoob、runooob、runoooooob 等，+ 号代表前面的字符必须至少出现一次（1次或多次）。
+        * runoo*b，可以匹配 runob、runoob、runoooooob 等，* 号代表字符可以不出现，也可以出现一次或者多次（0次、或1次、或多次）。
+        * colou?r 可以匹配 color 或者 colour，? 问号代表前面的字符最多只可以出现一次（0次、或1次）。
+        * */
+
+        Pattern pattern=Pattern.compile(".*(.)(.)(\\1)(\\2).*");/*表示ABAB这种的重复的！！但如果说是ABCABC呢！*/
+        String say=text.next();
+        Matcher M=pattern.matcher(say);
+        boolean result=M.matches();
+        System.out.println(result);
+
+        /*那么这两种有什么区别呢？底下这个比较方便还好理解*/
+       /*boolean result2= say.matches("[0-9]{3}");
+       System.out.println(result2);*/
+        boolean result2= say.matches(".*(.).*(.)(.*\\1)(.*\\2).*");/*适合ABCABC  三个及三个以上的*/
+        System.out.println(result2);
+
+
+
 
     }
 }
